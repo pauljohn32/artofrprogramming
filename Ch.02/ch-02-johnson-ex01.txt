@@ -1,2 +1,4 @@
 How do you find out how many elements are in an R vector?
 
+Did you mean length()?
+
