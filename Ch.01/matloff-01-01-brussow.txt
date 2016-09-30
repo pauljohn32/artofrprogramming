@@ -1,0 +1,4 @@
+1. What is the scope of a variable defined outside of a function?
+2. What is the scope of a variable defined within a function?
+3. Name three types of data structures in R.
+4. What function would you use to find your current directory?
