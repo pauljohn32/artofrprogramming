@@ -3,3 +3,4 @@
 3. What functions would you use to add rows or columns to a matrix?
 4. What attribute does the matrix class possess?
 5. What argument should you include to avoid unintentional dimension reduction?
+6. Are we supposed to be answering our own questions here?
