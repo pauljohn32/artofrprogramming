@@ -1,0 +1,5 @@
+1. How many data types may be stored in a vector?
+2. What does R do when applying an operation to two vectors that requires them to be the same length?
+3. How would you extract indices 3, 4, and 7 from vector x?
+4. How would you write the equivalent of for(i in 1:length(x)) using seq()?
+5. What does it mean for a function to be vectorized?
