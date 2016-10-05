@@ -1,3 +1,7 @@
+# Getting started
+
+## Introduction to functions
+
 Running the code below will result in what value of *x*?
 
 ```{r}
@@ -8,7 +12,7 @@ for (i in 1:length(l)) {
 x
 ```
 
-*A: 0*
+> 0
 
 Given the code below, what is the final value of *x*?
 
@@ -22,7 +26,7 @@ super.assigner(x)
 x
 ```
 
-*A: 50*
+> 50
 
 What about now? What would you expect *x* to be?
 
@@ -35,5 +39,20 @@ x <- super.assigner()
 x
 ```
 
-*A: 8*
+> 8
+
+
+
+## Getting help
+
+A student would like to use the `rnorm()` function.
+Provide at least two ways the student can seek help within the R environment.
+
+> ?rnorm
+
+> help(rnorm)
+
+> example(rnorm)
+
+> help.search("rnorm")
 
