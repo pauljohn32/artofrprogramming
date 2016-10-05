@@ -1,3 +1,5 @@
+***I realize this is not the described format. Will happily fix, but not sure if we can include code in questions, so I went with this for now***
+
 # Getting started
 
 ## 1.3 Introduction to functions
