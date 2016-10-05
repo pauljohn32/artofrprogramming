@@ -1,18 +1,6 @@
 # Getting started
 
-## Introduction to functions
-
-Running the code below will result in what value of *x*?
-
-```{r}
-l <- list()
-for (i in 1:length(l)) {
-  x <- i
-}
-x
-```
-
-> 0
+## 1.3 Introduction to functions
 
 Given the code below, what is the final value of *x*?
 
@@ -43,7 +31,7 @@ x
 
 
 
-## Getting help
+## 1.7 Getting help
 
 A student would like to use the `rnorm()` function.
 Provide at least two ways the student can seek help within the R environment.
