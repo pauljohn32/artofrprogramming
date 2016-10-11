@@ -1,0 +1,1 @@
+A student would like to use the `rnorm()` function. Provide code for at least two ways the student can seek help within the R environment.
