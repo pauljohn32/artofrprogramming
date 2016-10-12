@@ -3,10 +3,11 @@
 #' @description Reads .txt and .md files with exercise
 #'   questions by chapter for the Art of R Programming.
 #'
-#' @param ch Integer indicating chapter number
+#' @param path Path to artofrprogramming directory
 #'
-#' @return Recursive list consisting of character vectors
-#'   for each chapter.
+#' @return Generates \code{answers.md} files for each
+#'   chapter consisting of exercise questions (include those
+#'   that use R code).
 #' @export
 ch_reader <- function(path = getwd()) {
   folders <- list.files(path)
@@ -69,9 +70,7 @@ linebreaker <- function(x) {
 }
 
 file_reader <- function(path) {
-  #x <-
   readLines(path, warn = FALSE)
-  #unlist(lapply(x, linebreaker), use.names = FALSE)
 }
 
 is_question_files <- function(x, mode = "paths") {
@@ -92,10 +91,3 @@ is_question_files <- function(x, mode = "paths") {
   if (identical(length(x), 0L)) return("")
   unlist(x, use.names = FALSE)
 }
-
-
-files <- is_question_files(paste0(getwd(), "/Ch.02"))
-x <- files
-files <- paste0(getwd(), "/", x)
-x <- files
-path <- files[[1]]
