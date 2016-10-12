@@ -18,7 +18,8 @@ ch_reader <- function(path = getwd()) {
     path_maker(folders[[i]], folder_files[[i]]))
   x <- lapply(paths, folder_reader)
   compiled_paths <- paste0(folders, "/")
-  x <- lapply(x, function(x) paste0(paste0(x, collapse = "\n"), "\n\n"))
+  x <- lapply(x, function(x) paste0(paste0(x,
+    collapse = "\n\n"), "\n\n\n"))
   x <- lapply(seq_along(folders), function(i)
     paste0("# ", folders[[i]], "\n",
       paste(x[[i]], collapse = "\n")))
@@ -31,11 +32,6 @@ ch_questions <- function(x, ch, path) {
     paste0(ch, collapse = "\n"), "\n")
 }
 
-
-
-    paste0(paste0("#", folders[[i]]),
-      paste0(folders, collapse = "\n"),
-    paste0(paths[[i]], collapse = "\n")))
 path_maker <- function(folder, folder_files) {
   unlist(lapply(folder_files, function(i) {
     if (identical(i, "")) return(invisible())
