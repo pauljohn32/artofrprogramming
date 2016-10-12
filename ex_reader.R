@@ -21,14 +21,15 @@ ch_reader <- function(path = getwd()) {
   x <- lapply(x, function(x) paste0(paste0(x,
     collapse = "\n\n"), "\n\n\n"))
   x <- lapply(seq_along(folders), function(i)
-    paste0("# ", folders[[i]], "\n",
-      paste(x[[i]], collapse = "\n")))
-  lapply(seq_along(x), function(i)
-    cat(x[[i]], file = paste0(compiled_paths[[i]], "questions.md")))
+    paste0("# ", folders[[i]], "\n\n",
+      paste(x[[i]], collapse = "\n\n")))
+  invisible(lapply(seq_along(x), function(i)
+    cat(x[[i]], file = paste0(compiled_paths[[i]],
+      "questions.md"))))
 }
 
 ch_questions <- function(x, ch, path) {
-  x <- paste0(paste0("# Chapter ", ch, " Questions\n"),
+  paste0(paste0("# Chapter ", ch, " Questions\n"),
     paste0(ch, collapse = "\n"), "\n")
 }
 
@@ -40,14 +41,37 @@ path_maker <- function(folder, folder_files) {
 }
 
 folder_reader <- function(x) {
-  unlist(lapply(x, file_reader),
-    use.names = FALSE)
+  x <- lapply(x, file_reader)
+  x <- lapply(x, function(x) unlist(linebreaker(x),
+    use.names = FALSE))
+  paste0(unlist(x, use.names = FALSE), collapse = "")
 }
+
+linebreaker <- function(x) {
+  k <- FALSE
+  for (i in seq_along(x)) {
+    x[[i]] <- gsub("^[0-9].\\s", "", x[[i]])
+    if (grepl("```", x[[i]])) {
+      if (k) {
+        x[[i]] <- paste0(x[[i]], "\n\n")
+        k <- !k
+      } else {
+        x[[i]] <- paste0(x[[i]], "\n")
+        k <- !k
+      }
+    } else if (k) {
+      x[[i]] <- paste0(x[[i]], "\n")
+    } else {
+      x[[i]] <- paste0(x[[i]], "\n\n")
+    }
+  }
+  x
+}
+
 file_reader <- function(path) {
-  x <- readLines(path, warn = FALSE)
-  paste0(unlist(lapply(x, function(i)
-    gsub("^[0-9].\\s", "", i)),
-    use.names = FALSE), collapse = "\n")
+  #x <-
+  readLines(path, warn = FALSE)
+  #unlist(lapply(x, linebreaker), use.names = FALSE)
 }
 
 is_question_files <- function(x, mode = "paths") {
@@ -68,3 +92,10 @@ is_question_files <- function(x, mode = "paths") {
   if (identical(length(x), 0L)) return("")
   unlist(x, use.names = FALSE)
 }
+
+
+files <- is_question_files(paste0(getwd(), "/Ch.02"))
+x <- files
+files <- paste0(getwd(), "/", x)
+x <- files
+path <- files[[1]]
