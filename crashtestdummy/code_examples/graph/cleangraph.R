@@ -3,7 +3,8 @@ library(formatR)
 ?tidy.source
 
 ## blurts result to screen
-tidy.source(source="graph.R", replace.assign = TRUE)
+tidy_source(source="graph.R", arrow = TRUE)
 
 ## writes result to file
-tidy.source(source="graph.R", replace.assign = TRUE, file = "graph-clean.R")
+tidy_source(source="graph.R", arrow = TRUE,
+            file = "graph-clean-20161012.R")
