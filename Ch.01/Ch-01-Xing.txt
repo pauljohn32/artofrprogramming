@@ -1,0 +1,58 @@
+##------------------------------##
+## Matloff Chapter 01 Questions ##
+##------------------------------##
+
+## Question 01 (Multiple-Choice; p. 3)
+
+A pdf file (a histogram of 100 values) was created using the following R code. Which line of the script causes the file to be writen to the disk?
+
+A. > pdf("filename.pdf")
+B. > hist(rnorm(100))
+C. > dev.off()
+D. all of the above
+
+Answer: C
+
+## Question 02 (Multiple-Choice; p. 4)
+
+We created a vector q by using the following R code. What is the total number of elements in q?
+
+> x <- c(1, 4, 8)
+> q <- c(x, 5)
+
+A. 3
+B. 4
+C. 5
+D. 6
+
+Answer: B
+
+## Question 03 (True/False; p. 10)
+
+The elements of a vector must all have the same mode, or data type.
+
+Answer: True
+
+## Question 04 (True/False; p. 10)
+
+We can create a three-element vector in R that has one integer element and two character string elements.
+
+Answer: False
+
+## Question 05 (True/False; p. 12)
+
+An R list can contain items of different data types.
+
+Answer: True
+
+## Question 06 (True/False; p. 12)
+
+Subscripts for indexing matrices in R start at 0.
+
+Answer: False
+
+## Question 07 (True/False; p. 14)
+
+A data frame in R is a list.
+
+Answer: True
