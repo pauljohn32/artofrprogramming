@@ -1,0 +1,51 @@
+01. Answer (p. 26): D
+
+02. Answer (p. 27): B
+
+03. Answer (p. 28): True
+
+04. Answer (pp. 28-29): B
+
+05. Answer (pp. 29-30): B
+
+06. Answer (p. 31): C
+
+07. Answer (pp. 31-32): A
+
+08. Answer (p. 33): D
+
+09. Answer (p. 35): B
+
+10. Answer (p. 43): False
+
+11. Answer (p. 45): B
+
+12. Answer (p. 54): False
+
+13. Answer (p. 56): D
+
+14. (R exercise; pp. 35-37)
+
+Answer for Step 4 (p. 36):
+
+findOddRuns1 <- function(x, k) {
+    n <- length(x)
+    runs <- vector(length = n)
+    count <- 0
+    for (i in 1:(n - k + 1)) {
+        if (all(x[i:(i + k -1)] %% 2 == 1)) {
+            count <- count + 1
+            runs[count] <- i
+        }
+    }
+    if (count > 0) {
+        runs <- runs[1:count]
+    } else runs <- NULL
+    return(runs)
+}
+
+
+## test
+
+j <- c(1, 2, 3, 5, 6, 7, 9, 11, 12)
+findOddRuns1(c(j, 3)
