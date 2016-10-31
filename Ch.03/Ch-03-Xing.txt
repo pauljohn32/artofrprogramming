@@ -1,0 +1,192 @@
+##---------------------------------------------------##
+## Matloff Chapter 03 Questions: Matrices and Arrays ##
+##---------------------------------------------------##
+
+## Question 01 (True/False)
+
+In R, matrix row and column subscripts begin with 0.
+
+Answer (p. 59): False
+
+
+## Question 02 (Multiple-Choice)
+
+What is the outcome of the following code?
+
+> y <- matrix(c(1, 2, 3, 4), nrow = 2, ncol = 2)
+> y[2, ]
+
+A. [1] 1 2
+B. [1] 2 4
+C. [1] 1 3
+D. [1] 2 3
+
+Answer (p. 60): B
+
+
+## Question 03 (Multiple-Choice)
+
+Which one of the following codes will NOT be able to create a four by four matrix (y)?
+
+A. > y <- matrix(c(1, 2, 3, 4), nrow = 2, ncol = 2)
+
+B. > y <- matrix(c(1, 2, 3, 4), nrow = 2)
+
+C. > y <- matrix(c(1, 2, 3, 4), ncol = 2)
+
+D. > y[1, 1] <- 1
+   > y[2, 1] <- 2
+   > y[1, 2] <- 3
+   > y[2, 2] <- 4
+
+Answer (p. 60): D
+
+
+## Question 04 (Multiple-Choice)
+
+What is the outcome of the following code?
+
+> y <- matrix(c(1:6), nrow = 3)
+> y[-3, ]
+
+A.      [,1] [,2]
+   [1,]    1    4
+   [2,]    2    5
+
+B.      [,1] [,2]
+   [1,]    2    5
+   [2,]    3    6
+
+C.      [,1] [,2]
+   [1,]   -1   -4
+   [2,]   -2   -5
+
+D.      [,1] [,2]
+   [1,]   -3   -4
+
+Answer (p. 63): A
+
+
+## Question 05 (Multiple-Choice)
+
+What is the outcome of the following code?
+
+> m <- matrix(c(1:6), ncol = 2)
+> m[m[, 1] < 2 & m[, 2] < 5, ]
+
+A. [1] 3 6
+B. [1] 2 5
+C. [1] 1 4
+
+Answer (p. 68): C
+
+
+## Question 06 (Multiple-Choice)
+
+What is the outcome of the following code?
+
+> m <- matrix(c(1:4), nrow = 2)
+> n <- matrix(c(5:8), nrow = 2)
+> rbind(m, n)
+
+A.      [,1] [,2]
+   [1,]    1    3
+   [2,]    2    4
+   [3,]    5    7
+   [4,]    6    8
+
+B.      [,1] [,2] [,3] [,4]
+   [1,]    1    3    5    7
+   [2,]    2    4    6    8
+
+C.      [,1] [,2]
+   [1,]    1    5
+   [2,]    2    6
+   [3,]    3    7
+   [4,]    4    8
+
+D.      [,1] [,2] [,3] [,4]
+   [1,]    1    2    3    4
+   [2,]    5    5    7    8
+
+Answer (pp. 74-75): A
+
+
+## Question 07 (Multiple-Choice)
+
+What is the outcome of the following code?
+
+> m <- matrix(c(1:4), nrow = 2)
+> n <- matrix(c(5:8), nrow = 2)
+> cbind(m, n)
+
+A.      [,1] [,2]
+   [1,]    1    3
+   [2,]    2    4
+   [3,]    5    7
+   [4,]    6    8
+
+B.      [,1] [,2] [,3] [,4]
+   [1,]    1    3    5    7
+   [2,]    2    4    6    8
+
+C.      [,1] [,2]
+   [1,]    1    5
+   [2,]    2    6
+   [3,]    3    7
+   [4,]    4    8
+
+D.      [,1] [,2] [,3] [,4]
+   [1,]    1    2    3    4
+   [2,]    5    6    7    8
+
+Answer (pp. 74-75): B
+
+
+## Question 08 (Short Answer)
+
+Take a look at the following codes and outcomes. Can you describe the potential problem occured in this execution? Can you offer a solution (an argument in R) to the problem?
+
+> z <- matrix(c(1:8), ncol = 2)
+
+> z
+     [,1] [,2]
+[1,]    1    5
+[2,]    2    6
+[3,]    3    7
+[4,]    4    8
+
+> r <- z[3, ]
+
+> r
+[1] 3 7
+
+Answer (pp. 80-81): Dimension reduction occured in the process. The matrix z was reduced to a vector r, and this could pose problems in some matrix operations later. The drop = FALSE argument can be a solution for the dimension reduction problem.
+
+## Question 09 (R exercise; pp. 70-72)
+
+Step 1: Create a 3 by 4 matrix m with any integers.
+
+Step 2: Use the apply() function to calculate the means of the rows and the columns.
+
+Step 3: Create a function f() that divides a four-element vextor by the vector (0.5, 6).
+
+Step 4: Apply f() to the rows of m. Is the size of the returned matrix same as m? Why?
+
+Answer:
+
+## Step 1
+m <- matrix(c(1:12), nrow = 3)
+m
+
+## Step 2
+apply(m, 1, mean)
+apply(m, 2, mean)
+
+## Step 3
+f <- function(x) x / c(0.5, 6)
+
+## Step 4
+apply(m, 1, f)
+
+The returned matrix is 4 by 3. It is different from m which is a 3 by 4 matrix. It is because apply() stores returned values by colunms.
