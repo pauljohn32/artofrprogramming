@@ -1,0 +1,28 @@
+01. Answer (pp. 87-88): The return of single brackets is another list; the results of double brackets show the type of the component.
+
+02. Answer (p. 90): B
+
+03. Answer(pp. 93-94): False
+
+04. Answer (p. 95): The return of lapply() is another list; the return of sapply() could be a simplified vector or matrix.
+
+05. Answers (pp. 88-90, pp. 93-94):
+
+## Step 1
+j <- list(id = 1, condition = "control")
+
+## Step 2
+names(j)
+j_ul_1 <- unlist(j)
+class(j_ul_1)
+
+## Step 3
+j$sex <- "female"
+j$age <- 23
+names(j)
+
+## Step 4
+j$condition <- NULL
+j$sex <- NULL
+j_ul_2 <- unlist(j)
+class(j_ul_2) 

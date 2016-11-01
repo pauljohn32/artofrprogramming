@@ -1,0 +1,45 @@
+##-------------------------------------##
+## Matloff Chapter 04 Questions: Lists ##
+##-------------------------------------##
+
+## Question 01 (Short Answer)
+
+What is the difference between using single-bracket (e.g., list[i]) vs. double-bracket (e.g., list[[i]]) when accessing list components?
+
+
+## Question 02 (Multiple-Choice)
+
+What is the outcome of the following code?
+
+> j <- list(name = "Joe", sex = "Male", age = 24)
+> length(j)
+
+A. [1] "Joe"
+B. [1] 3
+C. [1] "Male"
+D. [1] "Joe" "Male" "24"
+
+
+## Question 03 (True/False)
+
+When using the unlist() function to obtain the values of a mixed list (e.g., it contains numbers and characters), the return will be a mixed vector with numbers and characters.
+
+
+## Question 04 (Short-Answer)
+
+What is the difference between the lapply() and sapply() functions when applying them to a list?
+
+
+## Question 05 (R exercise)
+
+Step 1: Use the following code to create a list j
+
+j <- list(id = 1, condition = "control")
+
+Step 2: Use names() function to find out the names of the components.
+
+Step 3: Create a vector j_ul_1 by appyling the unlist() function to j. What is the class of j_ul_1?
+
+Step 3: Use $ to add two more components to j, sex = "female" and age = 23. Find out the component names in j.
+
+Step 4: Use $ and NULL to delete two components in j, condition and sex. Create a vector j_ul_2 by applying the unlist function to j. What is the class of j_ul_2? Is the class of j_ul_2 different from the class of j_ul_1? Why?
