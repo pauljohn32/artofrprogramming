@@ -1,0 +1,68 @@
+##-----------------------------------------------##
+## Matloff Chapter 01 Questions: Getting Started ##
+##-----------------------------------------------##
+
+## Question 01 (Multiple-Choice)
+
+A pdf file (a histogram of 100 values) was created using the following R script. Which line of the script causes the file to be writen to the disk?
+
+A. > pdf("filename.pdf")
+B. > hist(rnorm(100))
+C. > dev.off()
+D. all of the above
+
+
+## Question 02 (Multiple-Choice)
+
+We created a vector q by using the following R code. What is the total number of elements in q?
+
+> x <- c(1, 4, 8)
+> q <- c(x, 5)
+
+A. 3
+B. 4
+C. 5
+D. 6
+
+## Question 03 (True/False)
+
+The elements of a vector must all have the same mode, or data type.
+
+
+## Question 04 (True/False)
+
+We can create a three-element vector in R that has one integer element and two character string elements.
+
+
+## Question 05 (True/False)
+
+An R list can contain items of different data types.
+
+
+## Question 06 (True/False)
+
+Subscripts for indexing matrices in R start at 0.
+
+
+## Question 07 (True/False)
+
+A data frame in R is a list.
+
+
+## Question 08 (R Exercise)
+
+A function, evencount(), was created using the following code. It counts the number of even integers in x.
+
+evencount <- function(x) {
+    k <- 0
+    for (n in x) {
+        if (n %% 2 == 0) k <- k + 1
+    }
+    return(k)
+}
+
+Step 1: Run the above code in R to create the function.
+
+Step 2: Use c() to create a vector j with some integers.
+
+Step 3: Apply the evencount() function to j. Did it work?
