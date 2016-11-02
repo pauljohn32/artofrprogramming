@@ -1,0 +1,47 @@
+01. Answer (p. 121): B
+
+02. Answer (p. 122): The pre-defined levels (1, 2, 3, 4) of factor xf does not include 5. Thus, 5 was not allowed to be added to the factor.
+
+03. Answers (pp. 123-127):
+
+03. Step 2
+
+> tapply(CO2$uptake, CO2$Type, mean)
+     Quebec Mississippi 
+   33.54286    20.88333
+
+03. Step 3
+
+> tapply(CO2$uptake, list(CO2$Type, CO2$Treatment), mean)
+            nonchilled  chilled
+Quebec        35.33333 31.75238
+Mississippi   25.95238 15.81429
+
+03. Step 4
+
+> CO2$concOver500 <- ifelse(CO2$conc > 500, 1, 0)
+> head(CO2)
+  Plant   Type  Treatment conc uptake concOver500
+1   Qn1 Quebec nonchilled   95   16.0           0
+2   Qn1 Quebec nonchilled  175   30.4           0
+3   Qn1 Quebec nonchilled  250   34.8           0
+4   Qn1 Quebec nonchilled  350   37.2           0
+5   Qn1 Quebec nonchilled  500   35.3           0
+6   Qn1 Quebec nonchilled  675   39.2           1
+
+03. Step 5
+> tapply(CO2$uptake, list(CO2$Type, CO2$Treatment, CO2$concOver500), mean)
+, , 0
+
+            nonchilled  chilled
+Quebec        32.53333 28.78667
+Mississippi   23.90667 14.74000
+
+, , 1
+
+            nonchilled  chilled
+Quebec        42.33333 39.16667
+Mississippi   31.06667 18.50000
+
+03. Step 6
+split(CO2$uptake, list(CO2$Type, CO2$Treatment, CO2$concOver500))
