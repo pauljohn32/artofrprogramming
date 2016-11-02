@@ -1,0 +1,63 @@
+01. Answer (p. 101): False
+
+02. Answer (pp. 102-103): C
+
+03. Answers (pp. 104-105):
+
+03.a:
+exp[, 5, drop = FALSE] # without drop = FALSE, the returned object will be a vector, not a data frame.
+
+03.b: 
+exp[exp$sex == "female", ]
+# or
+subset(exp, sex == "female")
+
+03.c:
+exp[exp$age > 21, ]
+# or
+subset(exp, age > 21)
+
+04. Answer (p. 105): False
+
+05. Answers (pp. 105-106):
+
+05.a: No, na.rm = TRUE needs to be included due to the missing data.
+
+05.b: subset(survey, month.income >= 4000)
+
+05.c: A new row of observation will be added to the data.
+
+06. Answer (p. 107): TRUE
+
+07. Answers (pp. 109-111)
+
+07. Step 1
+student <- c("Jack", "Jill", "Jillian", "John")
+exam.1 <- c(85, 88, 75, 82)
+d1 <- data.frame(student, exam.1, stringsAsFactors = FALSE)
+
+student <- c("Jack", "Jill", "Lillian", "John")
+exam.2 <- c(88, 73, 80, 74)
+d2 <- data.frame(student, exam.2, stringsAsFactors = FALSE)
+
+name <- c("Jack", "Jill", "Lillian", "John")
+exam.3 <- c(90, 83, 76, 80)
+d3 <- data.frame(name, exam.3, stringsAsFactors = FALSE)
+
+07. Step 2
+d <- merge(d1, d2)
+d
+
+07. Step 3
+merge(d, d3, by.x = "student", by.y = "name")
+
+08. Answer (pp. 113-114)
+
+lftn <- function(clmn) {
+    lm(swiss$Fertility ~ clmn)$coef
+}
+
+loall <- sapply(swiss[, -1], lftn)
+loall
+
+
