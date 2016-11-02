@@ -1,0 +1,121 @@
+##-------------------------------------------##
+## Matloff Chapter 05 Questions: Data Frames ##
+##-------------------------------------------##
+
+## Question 01 (True/False)
+
+Like a matrix, a data frame requires all of its columns to have a same mode/type.
+
+
+## Question 02 (Multiple-Choice)
+
+A data frame d contains two variables, age and sex. Which one of the following command will NOT work for accessing values of age?
+
+< d
+  age    sex
+1  24 female  
+2  21 female
+3  30   male
+
+A. d$age
+B. d[[1]]
+C. d[1, ]
+D. d[, 1]
+
+
+## Question 03 (Short Answer)
+
+The following data frame (exp) contains five variables measured/assigned in an experiment: participant id, age, sex, assigned condition, and treatment effect.
+
+
+> exp
+  id age    sex condition effect
+1  1  18   male treatment    3.5
+2  2  18 female   control    3.7
+3  3  23 female treatment    4.4
+4  4  22   male   control    6.3
+5  5  24   male treatment    5.4
+6  6  19 female treatment    3.5
+
+
+Q03.a: Provide R code for extracting a subdata frame which only contains the effect variable (hint: the returned object should be a new data frame, not a vector). 
+
+Q03.b: Provide R code for extracting a subdata frame which contains the five variables ONLY for the female participants (hint: "female" should be used in the code, instead of female without quotation marks).
+
+Q03.c: Provide R code for extracting a subdata frame which contains the five variables ONLY for participants over age 21.
+
+
+## Question 04 (True/False)
+
+When we use the subset() function to extract subdata frames from a data frame containing missing data, we need to include na.rm = TRUE if we want R to ignor the missing values (NA).
+
+
+## Question 05 (Short Answer)
+
+The following data frame contains five variables (with missing responses) from a survey study: participant id, age, sex, education level, and monthly income. 
+
+> survey
+  id age    sex       education month.income
+1  1  28   male         college         4500
+2  2  NA female     high school         4000
+3  3  31   <NA>         college           NA
+4  4  NA   male            <NA>         4800
+5  5  36   male graduate school           NA
+6  6  26 female            <NA>         3000
+
+Q05.a: Can we use the following code to caculate the average monthly income of these six participants? Why?
+                                                                                                           > mean(month.income)
+
+Q05.b: Provide the code, use the subset() function in R, for extracting a subdata frame ONLY contains participants whose monthly income equals to or above 4000.
+
+Q05.c: What is the result of the following code?
+
+> rbind(survey, list(7, 40, "male", "high school", 2500))
+
+
+## Question 06 (True/False)
+
+We can use apply() on data frames, if the columns are all the same type.
+
+
+## Question 07 (R exercise; pp. 109-111)
+
+Step 1: Reproduce the following three dataframes (d1, d2, and d3).
+
+> d1
+  student exam.1
+1    Jack     85
+2    Jill     88
+3 Jillian     75
+4    John     82
+
+> d2
+  student exam.2
+1    Jack     88
+2    Jill     73
+3 Lillian     80
+4    John     74
+
+> d3
+     name exam.3
+1    Jack     90
+2    Jill     83
+3 Lillian     76
+4    John     80
+
+
+Step 2: Use the merge() function to merge d1 and d2 (name the merged data frame as d).
+
+Step 3: Use the merge() function to merge d and d3 (assuming d$student and d3$name have similar information but different names). 
+
+
+## Question 08 (R Exercise; pp. 113-114)
+
+Step 1: Use the following code to obtain the information about a dataset (swiss) in R.
+
+> ?swiss
+> head(swiss)
+
+Step 2: Review the 5.4.2 Extended Example: Applying Logistic Regression Models (pp. 113-114)
+
+Step 3: Try to adapt the R code for running logistic regressions on a dataframe (p. 114), so we can predict Fertility (the first variable in the swiss data) by the other five variables using the lm() function.
