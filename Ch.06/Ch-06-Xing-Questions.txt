@@ -1,0 +1,55 @@
+##--------------------------------------------------##
+## Matloff Chapter 06 Questions: Factors and Tables ##
+##--------------------------------------------------##
+
+## Question 01 (Multiple-Choice)
+
+What is the outcome of the following execution?
+
+> x <- c(1, 2, 2, 3, 3, 3)
+> xf <- factor(x)
+> length(xf)
+
+A. [1] 3
+B. [1] 6
+C. [1] 1 2 3
+D. [1] 1 2 2 3 3 3
+
+
+## Question 02 (Short Answer)
+
+The following R code returned an error message. What caused the prolem?
+
+> x <- c(1, 2, 2, 3)
+> x
+[1] 1 2 2 3
+> xf <- factor(x, levels = c(1, 2, 3, 4))
+> xf
+[1] 1 2 2 3
+Levels: 1 2 3 4
+> xf[2] <- 4
+> xf
+[1] 1 4 2 3
+Levels: 1 2 3 4
+> xf[3] <- 5
+Warning message:
+In `[<-.factor`(`*tmp*`, 3, value = 5) : invalid factor level, NA generated
+
+
+## Question 03 (R Exercise for Functions Used with Factors; pp. 123-127)
+
+Step 1: Use the following code to obtain information of the CO2 dataset in R.
+
+?CO2
+head(CO2)
+summary(CO2)
+
+Step 2: Use the tapply() and the mean() function to calculate the mean uptake of plants in each Type.
+
+Step 3: Calculate the mean uptake of plants within four categories (Type by Treatment).
+
+Step 4: Create a new binary variable concOver500. If conc > 500, concOver500 = 1; if conc <= 500, concOver500 = 0.
+
+Step 5: Calculate the mean uptake of plants within six categories (Type by Treatment by concOver500).
+
+Step 6: Use the split() function to group uptake into the six categories in Step 5.
