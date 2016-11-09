@@ -2,13 +2,15 @@ I have strings like this:
 
 ```
 x <- c("douglas-kansas-2016-10-21", "johnson-kansas-2016-10-33",
-       "sedgwick-kansas-2016-04-12") 
+       "sedgwick-kansas-2016-04-12", "cowboy-oklahoma-2016-11-14",
+	   "oklahoma-oklahoma-2016-01-01")) 
 ```
 
 But what I really need is
 
 x2 <- c("KS-Douglas-20161021", "KS-Johnson-20161033",
-       "KS-sedgwick-20160412")
+       "KS-Sedgwick-20160412", "OK-Cowboy-20161114",
+	   "OK-Oklahoma-20160101")
 
 Wrige a function that receives x and gets the job done.
 
