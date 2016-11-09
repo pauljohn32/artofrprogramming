@@ -10,84 +10,107 @@
 #'   that use R code).
 #' @export
 ch_reader <- function(path = getwd()) {
-  folders <- list.files(path)
-  folders <- grep("^ch.",
-    folders, value = TRUE,
-    ignore.case = TRUE)
-  folder_files <- lapply(folders, is_question_files)
-  paths <- lapply(seq_along(folders), function(i)
-    path_maker(folders[[i]], folder_files[[i]]))
-  x <- lapply(paths, folder_reader)
-  compiled_paths <- paste0(folders, "/")
-  x <- lapply(x, function(x) paste0(paste0(x,
-    collapse = "\n\n"), "\n\n\n"))
-  x <- lapply(seq_along(folders), function(i)
-    paste0("# ", folders[[i]], "\n\n",
-      paste(x[[i]], collapse = "\n\n")))
-  invisible(lapply(seq_along(x), function(i)
-    cat(x[[i]], file = paste0(compiled_paths[[i]],
-      "questions.md"))))
-}
+    ## paths vectors
+    folders <- list.files(path)
+    ## select ch folders
+    folders <- grep("^ch.", folders, value = TRUE,
+                    ignore.case = TRUE)
+    ## return only question files
+    folder_files <- lapply(folders, is_question_files)
 
-ch_questions <- function(x, ch, path) {
-  paste0(paste0("# Chapter ", ch, " Questions\n"),
-    paste0(ch, collapse = "\n"), "\n")
+    ## make into full paths
+    paths <- lapply(seq_along(folders), function(i)
+        path_maker(folders[[i]], folder_files[[i]]))
+
+    ## read each folder
+    x <- lapply(paths, folder_reader)
+
+    # for reconstructing paths
+    compiled_paths <- paste0(folders, "/")
+
+    # spacing between questions
+    x <- lapply(x, function(x)
+        paste0(paste0(x, collapse = "\n\n"), "\n\n\n"))
+
+    ## add headings
+    x <- lapply(seq_along(folders), function(i)
+        paste0("# ", folders[[i]], "\n\n",
+               paste(x[[i]], collapse = "\n\n")))
+
+    ## save markdown file with all questions for each chapter
+    invisible(lapply(seq_along(x), function(i)
+        cat(x[[i]], file = paste0(compiled_paths[[i]],
+                                  "questions.md"))))
 }
 
 path_maker <- function(folder, folder_files) {
-  unlist(lapply(folder_files, function(i) {
-    if (identical(i, "")) return(invisible())
-    paste0(folder, "/", i)
-  }), use.names = FALSE)
+    vapply(folder_files, function(i)
+        ifelse (identical(i, ""),
+                invisible(NA_character_),
+                paste0(folder, "/", i)),
+        character(1), USE.NAMES = FALSE)
 }
 
 folder_reader <- function(x) {
-  x <- lapply(x, file_reader)
-  x <- lapply(x, function(x) unlist(linebreaker(x),
-    use.names = FALSE))
-  paste0(unlist(x, use.names = FALSE), collapse = "")
+    ## clearly was going thru a lapply phase
+    not.na <- vapply(x, function(x) isTRUE(is.na(x)), logical(1))
+    x <- lapply(x[not.na], readLines, warn = FALSE)
+    x <- lapply(x, function(x)
+        unlist(linebreaker(x), use.names = FALSE))
+    paste0(unlist(x, use.names = FALSE), collapse = "")
 }
 
 linebreaker <- function(x) {
-  k <- FALSE
-  for (i in seq_along(x)) {
-    x[[i]] <- gsub("^[0-9].\\s", "", x[[i]])
-    if (grepl("```", x[[i]])) {
-      if (k) {
-        x[[i]] <- paste0(x[[i]], "\n\n")
-        k <- !k
-      } else {
-        x[[i]] <- paste0(x[[i]], "\n")
-        k <- !k
-      }
-    } else if (k) {
-      x[[i]] <- paste0(x[[i]], "\n")
-    } else {
-      x[[i]] <- paste0(x[[i]], "\n\n")
+    ## an ode to functional programming
+    k <- FALSE
+    for (i in seq_along(x)) {
+        x[[i]] <- gsub("^[0-9].\\s", "", x[[i]])
+        if (grepl("```", x[[i]])) {
+            if (k) {
+                x[[i]] <- paste0(x[[i]], "\n\n")
+                k <- !k
+            } else {
+                x[[i]] <- paste0(x[[i]], "\n")
+                k <- !k
+            }
+        } else if (k) {
+            x[[i]] <- paste0(x[[i]], "\n")
+        } else {
+            x[[i]] <- paste0(x[[i]], "\n\n")
+        }
     }
-  }
-  x
+    x
 }
 
-file_reader <- function(path) {
-  readLines(path, warn = FALSE)
-}
 
 is_question_files <- function(x, mode = "paths") {
-  paths <- list.files(x)
-  x <- paths
-  x <- gsub("[^[:alnum:]_]", " ", x)
-  x <- lapply(x, function(x) unlist(strsplit(x, " ", fixed = TRUE),
-    use.names = FALSE))
-  x <- lapply(x, function(x) gsub("ch|ex", "", x))
-  x <- lapply(x, function(x) grep("[0-9]", x, value = TRUE))
-  x <- lapply(x, function(x) x[1])
-  if (mode == "paths") {
-    x <- lapply(x, function(x) all(length(x) == 1, !is.na(x)))
-    x <- paths[unlist(x, use.names = FALSE)]
-  } else if (mode == "logical") {
-    x <- lapply(x, function(x) all(length(x) == 1, !is.na(x)))
-  }
-  if (identical(length(x), 0L)) return("")
-  unlist(x, use.names = FALSE)
+    ## create paths object
+    paths <- list.files(x)
+
+    ## replace non alpha num chars with space
+    x <- gsub("[^[:alnum:]_]", " ", paths)
+    ## split files into words
+    x <- lapply(x, function(x) strsplit(x, " ", fixed = TRUE)[[1]])
+    ## remove prefixes ch and ex
+    x <- lapply(x, function(x) gsub("ch|ex", "", x))
+    ## return numbers in each file name
+    x <- lapply(x, function(x) grep("[0-9]", x, value = TRUE))
+    ## select first number in each
+    x <- lapply(x, function(x) x[1])
+
+    ## logical vector indicating questions
+    x <- vapply(x, function(x) all(identical(x, 1),
+                                   isTRUE(!is.na(x))),
+                logical(1), USE.NAMES = FALSE)
+
+    ## convert to character vector of pathnames
+    if (mode == "paths") {
+        x <- paths[x]
+    }
+
+    ## if empty return blank
+    if (identical(length(x), 0L)) return("")
+
+    ## return
+    x
 }
