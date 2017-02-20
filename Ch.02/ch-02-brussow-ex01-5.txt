@@ -1,0 +1,23 @@
+1. How many data types may be stored in a vector?
+
+2. What does R do when applying an operation to two vectors.
+In math class, they said it is only allowed to add vectors of the
+same length.  Explain the following.
+
+A. Compare
+
+c(1, 2, 3) + c(10, 9, 8) 
+
+B. c(1, 2, 3) + 1
+
+C. c(1, 2, 3) + c(10, 5)
+
+D. c(1, 2, 3) + c(10, 5, -10, 30)
+
+
+3. How would you extract vale 3, 4, and 7 from vector x <- rnorm(10)?
+
+4. How would you write the equivalent of for(i in 1:length(x)) using
+seq() (or seq_along)?
+
+5. What does it mean for a function to be vectorized?
